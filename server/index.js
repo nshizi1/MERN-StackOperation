@@ -12,6 +12,12 @@ app.use(express.json())
 // connecting to MongoDB database
 mongoose.connect('mongodb://localhost:27017/crud')
 
+// API for get methods
+app.get("/", (req, res) => {
+    UserModel.find({})
+  .then(users => res.json(users))
+  .catch(err => res.json(err))
+})
 
 app.post("/createUser", (req, res) => {
     UserModel.create(req.body)
